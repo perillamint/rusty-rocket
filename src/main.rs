@@ -2,16 +2,14 @@
 #![feature(start)]
 #![feature(asm)]
 
-use t210;
-use t210::RegIO;
 use libtegra;
 use register::register_bitfields;
 
 #[panic_handler]
 fn panic(_info: &core::panic::PanicInfo) -> ! {
   unsafe {
-    t210::PMC.write(t210::pmc::SCRATCH0, 0x02);
-    t210::PMC.write(0x00, 0x10);
+    (*libtegra::pmc::REGISTERS).APBDEV_PMC_SCRATCH0_0.set(0x02);
+    (*libtegra::pmc::REGISTERS).APBDEV_PMC_CNTRL_0.set(0x10);
   }
   loop {}
 }
@@ -65,8 +63,8 @@ fn main(_argc: isize, _argv: *const *const u8) -> isize {
     }
     // GO DIE!
     // SYSTEM RESET!!
-    t210::PMC.write(t210::pmc::SCRATCH0, 0x02);
-    t210::PMC.write(0x00, 0x10);
+    (*libtegra::pmc::REGISTERS).APBDEV_PMC_SCRATCH0_0.set(0x02);
+    (*libtegra::pmc::REGISTERS).APBDEV_PMC_CNTRL_0.set(0x10);
     //t210::CLOCK.write(t210::clock::, 0x04);
     loop {}
   }
