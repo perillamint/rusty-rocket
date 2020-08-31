@@ -1,0 +1,12 @@
+[package]
+name = "rusty-rocket"
+version = "0.1.0"
+authors = ["perillamint <perillamint@quendi.moe>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+t210 = { path = '../t210' }
+libtegra = { git = 'https://github.com/mirage-rs/libtegra' }
+register = "0.5.0"
